@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Open Camera</title>
+</head>
+<body>
+
+	<video id="video-webcam" autoplay></video>
+
+	<script>
+		var video = document.querySelector('#video-webcam');
+
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+		if (navigator.getUserMedia) {
+			navigator.getUserMedia({
+				video: true,
+				audio: true
+			}, handleVideo, videoError);
+		}
+
+		function handleVideo(stream) {
+			video.srcObject = stream;
+		}
+
+		function videoError(error) {
+			alert("Izinkan menggunakan webcam untuk demo!");
+		}
+	</script>
+</body>
+</html>
